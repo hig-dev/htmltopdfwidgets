@@ -9,16 +9,28 @@ class HtmlTagStyle {
   final TextStyle? italicStyle;
   //h1 tag style that will merge with default style
   final TextStyle? h1Style;
+  // h1 text alignment
+  final TextAlign? h1Alignment;
   //h2 tag style that will merge with default style
   final TextStyle? h2Style;
+  // h2 text alignment
+  final TextAlign? h2Alignment;
   //h3 tag style that will merge with default style
   final TextStyle? h3Style;
+  // h3 text alignment
+  final TextAlign? h3Alignment;
   //h4 tag style that will merge with default style
   final TextStyle? h4Style;
+  // h4 text alignment
+  final TextAlign? h4Alignment;
   //h5 tag style that will merge with default style
   final TextStyle? h5Style;
+  // h5 text alignment
+  final TextAlign? h5Alignment;
   //h6 tag style that will merge with default style
   final TextStyle? h6Style;
+  // h6 text alignment
+  final TextAlign? h6Alignment;
   //strike through style that will merge with default style
   final TextStyle? strikeThrough;
   //image alignment style that will merge with default style
@@ -69,12 +81,18 @@ class HtmlTagStyle {
       {this.boldStyle,
       this.italicStyle,
       this.h1Style,
+      this.h1Alignment,
       this.h2Style,
+      this.h2Alignment,
       this.h3Style,
+      this.h3Alignment,
       this.imageAlignment = Alignment.center,
       this.h4Style,
+      this.h4Alignment,
       this.h5Style,
+      this.h5Alignment,
       this.h6Style,
+      this.h6Alignment,
       this.strikeThrough,
       this.paragraphStyle,
       this.codeStyle,

@@ -522,7 +522,7 @@ class WidgetsHTMLDecoder {
     TextStyle baseTextStyle, {
     required int level,
   }) async {
-    TextAlign? textAlign;
+    TextAlign? textAlign = level.getHeadingAlignment(customStyles);
     final delta = <TextSpan>[];
     final children = element.nodes.toList();
     final headerBaseTextStyle = baseTextStyle
@@ -532,7 +532,7 @@ class WidgetsHTMLDecoder {
       if (child is dom.Element) {
         final attributes = await _parserFormattingElementAttributes(
             child, headerBaseTextStyle);
-        textAlign = attributes.$1;
+        textAlign = attributes.$1 != null ? attributes.$1 : textAlign;
 
         delta.add(TextSpan(
             text: child.text,

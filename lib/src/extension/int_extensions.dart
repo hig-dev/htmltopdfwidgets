@@ -43,4 +43,23 @@ extension IntConverter on int {
         return customStyles.h1Style;
     }
   }
+
+  TextAlign? getHeadingAlignment(HtmlTagStyle customStyles) {
+    switch (this) {
+      case 1:
+        return customStyles.h1Alignment;
+      case 2:
+        return customStyles.h2Alignment;
+      case 3:
+        return customStyles.h3Alignment;
+      case 4:
+        return customStyles.h4Alignment;
+      case 5:
+        return customStyles.h5Alignment;
+      case 6:
+        return customStyles.h6Alignment;
+      default:
+        return customStyles.h1Alignment;
+    }
+  }
 }
