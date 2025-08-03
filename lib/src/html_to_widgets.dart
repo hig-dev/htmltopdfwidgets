@@ -525,10 +525,13 @@ class WidgetsHTMLDecoder {
     TextAlign? textAlign;
     final delta = <TextSpan>[];
     final children = element.nodes.toList();
+    final headerBaseTextStyle = baseTextStyle
+        .copyWith(fontSize: level.getHeadingSize, fontWeight: FontWeight.bold)
+        .merge(level.getHeadingStyle(customStyles));
     for (final child in children) {
       if (child is dom.Element) {
-        final attributes =
-            await _parserFormattingElementAttributes(child, baseTextStyle);
+        final attributes = await _parserFormattingElementAttributes(
+            child, headerBaseTextStyle);
         textAlign = attributes.$1;
 
         delta.add(TextSpan(
@@ -537,7 +540,7 @@ class WidgetsHTMLDecoder {
             annotation:
                 attributes.$3 == null ? null : AnnotationUrl(attributes.$3!)));
       } else {
-        delta.add(TextSpan(text: child.text, style: baseTextStyle));
+        delta.add(TextSpan(text: child.text, style: headerBaseTextStyle));
       }
     }
 
@@ -546,13 +549,7 @@ class WidgetsHTMLDecoder {
         width: double.infinity,
         child: RichText(
             textAlign: textAlign,
-            text: TextSpan(
-                children: delta,
-                style: baseTextStyle
-                    .copyWith(
-                        fontSize: level.getHeadingSize,
-                        fontWeight: FontWeight.bold)
-                    .merge(level.getHeadingStyle(customStyles))),
+            text: TextSpan(children: delta, style: headerBaseTextStyle),
             overflow: TextOverflow.span));
   }
 
