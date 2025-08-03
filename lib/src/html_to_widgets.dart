@@ -131,7 +131,9 @@ class WidgetsHTMLDecoder {
             result.add((SizedBox(
                 width: double.infinity,
                 child: RichText(
-                    textAlign: textAlign, text: TextSpan(children: newlist)))));
+                    textAlign: textAlign,
+                    text: TextSpan(children: newlist),
+                    overflow: TextOverflow.span))));
 
             textAlign = null;
             delta.clear();
@@ -184,10 +186,12 @@ class WidgetsHTMLDecoder {
               width: double.infinity,
               child: RichText(
                   textAlign: textAlign,
+                 
                   text: TextSpan(
                       children: newlist
                         ..add(TextSpan(
-                            text: domNode.text, style: baseTextStyle)))))));
+                            text: domNode.text, style: baseTextStyle))),
+                  overflow: TextOverflow.span))));
 
           textAlign = null;
 
@@ -206,7 +210,9 @@ class WidgetsHTMLDecoder {
       result.add((SizedBox(
           width: double.infinity,
           child: RichText(
-              textAlign: textAlign, text: TextSpan(children: newlist)))));
+              textAlign: textAlign,
+              text: TextSpan(children: newlist),
+              overflow: TextOverflow.span))));
     }
 
     /// If there are text nodes in delta, wrap them in a Wrap widget and add to the result
@@ -547,7 +553,8 @@ class WidgetsHTMLDecoder {
                     .copyWith(
                         fontSize: level.getHeadingSize,
                         fontWeight: FontWeight.bold)
-                    .merge(level.getHeadingStyle(customStyles)))));
+                    .merge(level.getHeadingStyle(customStyles))),
+            overflow: TextOverflow.span));
   }
 
   /// Function to parse a block quote element and return a list of widgets
@@ -764,7 +771,10 @@ class WidgetsHTMLDecoder {
     return Wrap(children: [
       SizedBox(
         width: double.infinity,
-        child: RichText(textAlign: textAlign, text: TextSpan(children: delta)),
+        child: RichText(
+            textAlign: textAlign,
+            text: TextSpan(children: delta),
+            overflow: TextOverflow.span),
       ),
       ...childNodes
     ]);
