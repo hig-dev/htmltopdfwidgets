@@ -186,7 +186,6 @@ class WidgetsHTMLDecoder {
               width: double.infinity,
               child: RichText(
                   textAlign: textAlign,
-                 
                   text: TextSpan(
                       children: newlist
                         ..add(TextSpan(
@@ -807,6 +806,15 @@ class WidgetsHTMLDecoder {
     final styleString = htmlAttributes["style"];
     final cssMap = _cssStringToMap(styleString);
 
+    ///get font size
+    final fontSizeStr = cssMap["font-size"];
+    if (fontSizeStr != null) {
+      final fontSize = double.tryParse(fontSizeStr.replaceAll("px", ""));
+      if (fontSize != null) {
+        style = style.copyWith(fontSize: fontSize);
+      }
+    }
+
     ///get font family
     final fontFamily = cssMap["font-family"];
     if (fontFamily != null) {
@@ -826,7 +834,9 @@ class WidgetsHTMLDecoder {
     ///get font weight
     final fontWeightStr = cssMap["font-weight"];
     if (fontWeightStr != null) {
-      if (fontWeightStr == "bold") {
+      if (fontWeightStr == "normal") {
+        style = style.copyWith(fontWeight: FontWeight.normal);
+      } else if (fontWeightStr == "bold") {
         style = style
             .copyWith(fontWeight: FontWeight.bold)
             .merge(customStyles.boldStyle);
